@@ -13,16 +13,16 @@ class BaseApp extends HeadFile {
     type = Dependency.COMMAND_HANDLER;
     name = "Command Handler";
     load = true;
-    Client;
-    Events;
+    static Client;
+    static Events;
     getDependencies() {
         return [Dependency.EVENTS, Dependency.DISCORD_CLIENT];
     }
 }
 __decorate([
     Dependencies.inject(Dependency.DISCORD_CLIENT)
-], BaseApp.prototype, "Client", void 0);
+], BaseApp, "Client", void 0);
 __decorate([
     Dependencies.inject(Dependency.EVENTS)
-], BaseApp.prototype, "Events", void 0);
+], BaseApp, "Events", void 0);
 export default BaseApp;
