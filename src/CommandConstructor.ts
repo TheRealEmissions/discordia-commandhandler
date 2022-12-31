@@ -7,6 +7,10 @@ import App from "./App.js";
 import { CommandHandlerEvents } from "./events/CommonEvents.js";
 import {
   APIApplicationCommandInteraction,
+  APIChatInputApplicationCommandInteraction,
+  APIChatInputApplicationCommandInteractionData,
+  APIInteractionDataResolved,
+  APIUserApplicationCommandInteraction,
   ApplicationCommandOptionType,
   ApplicationCommandType,
   ChannelType,
@@ -530,6 +534,12 @@ class CommandConstructor {
       }
       return x;
     });
+
+    return (
+      target: any,
+      propertyKey: string,
+      descriptor: PropertyDescriptor
+    ) => {};
   }
 
   public static subcommand(
@@ -882,6 +892,33 @@ class CommandConstructor {
       }
       return x;
     });
+
+    return (
+      target: any,
+      propertyKey: string,
+      descriptor: PropertyDescriptor
+    ) => {
+      BaseApp.Events.events.on(
+        CommandHandlerEvents.APPLICATION_COMMAND_USE,
+        (interaction: APIApplicationCommandInteraction, ...args: any[]) => {
+          if (
+            interaction.data.name === commandName &&
+            (isSubcommandGroup
+              ? (
+                  interaction.data as APIChatInputApplicationCommandInteractionData
+                ).options?.at(0)?.name === subcommandGroupName &&
+                (
+                  interaction.data as APIChatInputApplicationCommandInteractionData
+                ).options?.at(1)?.name === subcommandName
+              : (
+                  interaction.data as APIChatInputApplicationCommandInteractionData
+                ).options?.at(0)?.name === subcommandName)
+          ) {
+            descriptor.value(interaction, ...args);
+          }
+        }
+      );
+    };
   }
 }
 
