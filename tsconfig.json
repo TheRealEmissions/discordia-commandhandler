@@ -1,0 +1,24 @@
+{
+  "extends": "@tsconfig/node18/tsconfig.json",
+  "compilerOptions": {
+    "outDir": "out",
+    "allowSyntheticDefaultImports": true,
+    "lib": ["ES2022"],
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "target": "ES2022",
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "allowUnreachableCode": true,
+    "resolveJsonModule": true,
+    "declaration": true,
+    "declarationDir": "./types/command-handler",
+    "disableSizeLimit": true,
+    "esModuleInterop": false,
+    "incremental": true,
+    "experimentalDecorators": true,
+    "removeComments": true
+  },
+  "include": ["./**/*"],
+  "exclude": ["./node_modules/**/*", "./out/**/*", "*/node_modules/**/*", "*/package-lock.json"]
+}

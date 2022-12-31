@@ -1,0 +1,20 @@
+{
+  "name": "ts-modular-bot-addon-command-handler",
+  "version": "1.0.0",
+  "description": "Command Handler addon for Modular Bot Series",
+  "main": "out/index.js",
+  "types": "types/command-handler/index.d.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Emissions#2565",
+  "license": "ISC",
+  "dependencies": {
+    "@discordjs/builders": "^1.4.0",
+    "discord-api-types": "^0.37.25",
+    "events-types": "github:therealemissions/ts-modular-bot-addons-types#events",
+    "ts-modular-bot-file-design": "github:therealemissions/ts-modular-bot-file-design",
+    "ts-modular-bot-types": "github:therealemissions/ts-modular-bot-types"
+  },
+  "type": "module"
+}
