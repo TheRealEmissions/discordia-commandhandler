@@ -311,6 +311,7 @@ class CommandConstructor {
             }
             return x;
         });
+        return (target, propertyKey, descriptor) => { };
     }
     static subcommand(commandName, subcommandGroupName, subcommandName, description, isSubcommandGroup, options, args) {
         if (!this.builders.some((x) => x.name === commandName)) {
@@ -578,6 +579,17 @@ class CommandConstructor {
             }
             return x;
         });
+        return (target, propertyKey, descriptor) => {
+            BaseApp.Events.events.on(CommandHandlerEvents.APPLICATION_COMMAND_USE, (interaction, ...args) => {
+                if (interaction.data.name === commandName &&
+                    (isSubcommandGroup
+                        ? interaction.data.options?.at(0)?.name === subcommandGroupName &&
+                            interaction.data.options?.at(1)?.name === subcommandName
+                        : interaction.data.options?.at(0)?.name === subcommandName)) {
+                    descriptor.value(interaction, ...args);
+                }
+            });
+        };
     }
 }
 export default CommandConstructor;
