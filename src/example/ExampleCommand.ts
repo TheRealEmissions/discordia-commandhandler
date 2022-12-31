@@ -25,7 +25,7 @@ class PingCommand {
     null,
     "user",
     "Ping a user.",
-    true,
+    false,
     {
       nameInLocale: "userinfrench",
       nameLocalization: "fr",
