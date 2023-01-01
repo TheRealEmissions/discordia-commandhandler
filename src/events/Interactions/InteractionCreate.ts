@@ -12,7 +12,7 @@ class InteractionCreateEvent {
   @BaseApp.Events.bind(DiscordEvents.INTERACTION_CREATE, EventTypes.ON)
   static async commandUse(int: APIInteraction) {
     if (int.type === InteractionType.ApplicationCommand) {
-      BaseApp.Events.events.emit(
+      BaseApp.Events.getEventEmitter().emit(
         CommandHandlerEvents.APPLICATION_COMMAND_USE,
         int
       );
@@ -25,7 +25,10 @@ class InteractionCreateEvent {
       int.type === InteractionType.MessageComponent &&
       int.data.component_type === ComponentType.Button
     ) {
-      BaseApp.Events.events.emit(CommandHandlerEvents.BUTTON_CLICK, int);
+      BaseApp.Events.getEventEmitter().emit(
+        CommandHandlerEvents.BUTTON_CLICK,
+        int
+      );
     }
   }
 
@@ -35,14 +38,20 @@ class InteractionCreateEvent {
       int.type === InteractionType.MessageComponent &&
       int.data.component_type === ComponentType.StringSelect
     ) {
-      BaseApp.Events.events.emit(CommandHandlerEvents.SELECT_MENU_CLICK, int);
+      BaseApp.Events.getEventEmitter().emit(
+        CommandHandlerEvents.SELECT_MENU_CLICK,
+        int
+      );
     }
   }
 
   @BaseApp.Events.bind(DiscordEvents.INTERACTION_CREATE, EventTypes.ON)
   static async modalSubmit(int: APIInteraction) {
     if (int.type === InteractionType.ModalSubmit) {
-      BaseApp.Events.events.emit(CommandHandlerEvents.MODAL_SUBMIT, int);
+      BaseApp.Events.getEventEmitter().emit(
+        CommandHandlerEvents.MODAL_SUBMIT,
+        int
+      );
     }
   }
 }

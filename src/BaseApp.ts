@@ -1,6 +1,6 @@
 import { HeadFile } from "ts-modular-bot-file-design";
 import { Dependencies, Dependency } from "ts-modular-bot-types";
-import { app as Events } from "events-types";
+import Events from "events-types";
 
 abstract class BaseApp extends HeadFile {
   constructor() {

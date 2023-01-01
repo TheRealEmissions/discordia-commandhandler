@@ -12,24 +12,24 @@ import { CommandHandlerEvents } from "../CommonEvents";
 class InteractionCreateEvent {
     static async commandUse(int) {
         if (int.type === InteractionType.ApplicationCommand) {
-            BaseApp.Events.events.emit(CommandHandlerEvents.APPLICATION_COMMAND_USE, int);
+            BaseApp.Events.getEventEmitter().emit(CommandHandlerEvents.APPLICATION_COMMAND_USE, int);
         }
     }
     static async buttonClick(int) {
         if (int.type === InteractionType.MessageComponent &&
             int.data.component_type === ComponentType.Button) {
-            BaseApp.Events.events.emit(CommandHandlerEvents.BUTTON_CLICK, int);
+            BaseApp.Events.getEventEmitter().emit(CommandHandlerEvents.BUTTON_CLICK, int);
         }
     }
     static async selectMenuClick(int) {
         if (int.type === InteractionType.MessageComponent &&
             int.data.component_type === ComponentType.StringSelect) {
-            BaseApp.Events.events.emit(CommandHandlerEvents.SELECT_MENU_CLICK, int);
+            BaseApp.Events.getEventEmitter().emit(CommandHandlerEvents.SELECT_MENU_CLICK, int);
         }
     }
     static async modalSubmit(int) {
         if (int.type === InteractionType.ModalSubmit) {
-            BaseApp.Events.events.emit(CommandHandlerEvents.MODAL_SUBMIT, int);
+            BaseApp.Events.getEventEmitter().emit(CommandHandlerEvents.MODAL_SUBMIT, int);
         }
     }
 }

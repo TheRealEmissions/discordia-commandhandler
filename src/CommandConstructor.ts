@@ -7,10 +7,6 @@ import App from "./App.js";
 import { CommandHandlerEvents } from "./events/CommonEvents.js";
 import {
   APIApplicationCommandInteraction,
-  APIChatInputApplicationCommandInteraction,
-  APIChatInputApplicationCommandInteractionData,
-  APIInteractionDataResolved,
-  APIUserApplicationCommandInteraction,
   ApplicationCommandOptionType,
   ApplicationCommandType,
   ChannelType,
@@ -476,7 +472,7 @@ class CommandConstructor {
       propertyKey: string,
       descriptor: PropertyDescriptor
     ) => {
-      BaseApp.Events.events.on(
+      BaseApp.Events.getEventEmitter().on(
         CommandHandlerEvents.APPLICATION_COMMAND_USE,
         (interaction: APIApplicationCommandInteraction, ...args: any[]) => {
           if (
@@ -898,25 +894,9 @@ class CommandConstructor {
       propertyKey: string,
       descriptor: PropertyDescriptor
     ) => {
-      BaseApp.Events.events.on(
+      BaseApp.Events.getEventEmitter().on(
         CommandHandlerEvents.APPLICATION_COMMAND_USE,
-        (interaction: APIApplicationCommandInteraction, ...args: any[]) => {
-          if (
-            interaction.data.name === commandName &&
-            (isSubcommandGroup
-              ? (
-                  interaction.data as APIChatInputApplicationCommandInteractionData
-                ).options?.at(0)?.name === subcommandGroupName &&
-                (
-                  interaction.data as APIChatInputApplicationCommandInteractionData
-                ).options?.at(1)?.name === subcommandName
-              : (
-                  interaction.data as APIChatInputApplicationCommandInteractionData
-                ).options?.at(0)?.name === subcommandName)
-          ) {
-            descriptor.value(interaction, ...args);
-          }
-        }
+        (interaction: APIApplicationCommandInteraction, ...args: any[]) => {}
       );
     };
   }

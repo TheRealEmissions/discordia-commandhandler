@@ -278,7 +278,7 @@ class CommandConstructor {
         }
         this.builders.push(builder);
         return (target, propertyKey, descriptor) => {
-            BaseApp.Events.events.on(CommandHandlerEvents.APPLICATION_COMMAND_USE, (interaction, ...args) => {
+            BaseApp.Events.getEventEmitter().on(CommandHandlerEvents.APPLICATION_COMMAND_USE, (interaction, ...args) => {
                 if (interaction.data.name === name &&
                     this.builders.find((x) => x.name === name)?.options.length === 0)
                     descriptor.value(interaction, ...args);
@@ -580,15 +580,7 @@ class CommandConstructor {
             return x;
         });
         return (target, propertyKey, descriptor) => {
-            BaseApp.Events.events.on(CommandHandlerEvents.APPLICATION_COMMAND_USE, (interaction, ...args) => {
-                if (interaction.data.name === commandName &&
-                    (isSubcommandGroup
-                        ? interaction.data.options?.at(0)?.name === subcommandGroupName &&
-                            interaction.data.options?.at(1)?.name === subcommandName
-                        : interaction.data.options?.at(0)?.name === subcommandName)) {
-                    descriptor.value(interaction, ...args);
-                }
-            });
+            BaseApp.Events.getEventEmitter().on(CommandHandlerEvents.APPLICATION_COMMAND_USE, (interaction, ...args) => { });
         };
     }
 }

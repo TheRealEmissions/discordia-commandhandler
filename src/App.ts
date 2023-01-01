@@ -4,7 +4,7 @@ class App extends BaseApp {
     super();
   }
   init() {
-    BaseApp.Events.events.emit(
+    BaseApp.Events.getEventEmitter().emit(
       BaseApp.Events.GeneralEvents.INFO,
       "Command Handler Loaded"
     );
