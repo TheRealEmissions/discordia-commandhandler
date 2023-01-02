@@ -20,6 +20,9 @@ class CommandConstructor {
         this.App = App;
     }
     static builders = [];
+    getBuilders() {
+        return CommandConstructor.builders;
+    }
     static command(name, description, options, args) {
         if (this.builders.some((x) => x.name === name)) {
             throw new Error(`Command with name ${name} already exists`);

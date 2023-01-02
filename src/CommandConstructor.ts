@@ -164,6 +164,9 @@ class CommandConstructor {
   }
 
   private static builders: SlashCommandBuilder[] = [];
+  public getBuilders() {
+    return CommandConstructor.builders;
+  }
 
   public static command(
     name: string,

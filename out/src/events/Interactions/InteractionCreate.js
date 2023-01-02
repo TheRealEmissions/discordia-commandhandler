@@ -6,8 +6,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 import { ComponentType, InteractionType, } from "discord-api-types/v10";
 import BaseApp from "../../BaseApp";
-import { DiscordEvents } from "events-types/events/src/enums/CommonEvents";
-import { EventTypes } from "events-types/events/src/enums/EventTypes";
+import { DiscordEvents, EventTypes } from "ts-modular-bot-addon-events-types";
 import { CommandHandlerEvents } from "../CommonEvents";
 class InteractionCreateEvent {
     static async commandUse(int) {
