@@ -12,6 +12,7 @@
   "dependencies": {
     "@discordjs/builders": "^1.4.0",
     "discord-api-types": "^0.37.25",
+    "ts-modular-bot-addon-discord_client-types": "github:therealemissions/ts-modular-bot-addon-discord_client-types",
     "ts-modular-bot-addon-events-types": "github:therealemissions/ts-modular-bot-addon-events-types",
     "ts-modular-bot-file-design": "github:therealemissions/ts-modular-bot-file-design",
     "ts-modular-bot-types": "github:therealemissions/ts-modular-bot-types"

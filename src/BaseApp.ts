@@ -1,6 +1,7 @@
 import { HeadFile } from "ts-modular-bot-file-design";
 import { Dependencies, Dependency } from "ts-modular-bot-types";
 import Events from "ts-modular-bot-addon-events-types";
+import DiscordClient from "ts-modular-bot-addon-discord_client-types";
 
 abstract class BaseApp extends HeadFile {
   constructor() {
@@ -12,7 +13,7 @@ abstract class BaseApp extends HeadFile {
   load = true;
 
   @Dependencies.inject(Dependency.DISCORD_CLIENT)
-  static Client: object;
+  static Client: typeof DiscordClient;
 
   @Dependencies.inject(Dependency.EVENTS)
   static Events: typeof Events;
