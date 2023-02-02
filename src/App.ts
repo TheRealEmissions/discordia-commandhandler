@@ -2,7 +2,7 @@ import Logger from "ts-logger";
 import BaseApp from "./BaseApp.js";
 import CommandConstructor from "./CommandConstructor.js";
 import { Config } from "../config/Settings.js";
-import { Routes } from "discord-api-types/v10.js";
+import { Routes } from "discord-api-types/v10";
 class App extends BaseApp {
   CommandConstructor: CommandConstructor;
   constructor() {
@@ -15,6 +15,9 @@ class App extends BaseApp {
       BaseApp.Events.GeneralEvents.INFO,
       "Command Handler Loaded"
     );
+
+    if (BaseApp.Client.getSharded()) return;
+
     const commands = this.CommandConstructor.getBuilders();
     const data = commands.map((x) => x.toJSON());
     const rest = BaseApp.Client.getRest();
