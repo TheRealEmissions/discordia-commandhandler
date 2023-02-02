@@ -11,6 +11,8 @@ class App extends BaseApp {
     }
     async init() {
         BaseApp.Events.getEventEmitter().emit(BaseApp.Events.GeneralEvents.INFO, "Command Handler Loaded");
+        if (BaseApp.Client.getSharded())
+            return;
         const commands = this.CommandConstructor.getBuilders();
         const data = commands.map((x) => x.toJSON());
         const rest = BaseApp.Client.getRest();
