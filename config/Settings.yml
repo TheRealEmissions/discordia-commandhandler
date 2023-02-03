@@ -1,0 +1,21 @@
+commands:
+  # ------------------------------------------------
+  #
+  # GLOBAL COMMANDS
+  #
+  # SET TO true TO PUSH ALL COMMANDS GLOBALLY
+  #
+  # ------------------------------------------------
+  global: false
+
+  # ------------------------------------------------
+  #
+  # GUILD COMMANDS
+  #
+  # LIST ALL GUILD IDS YOU WANT THE COMMANDS TO BE PUSHED TO
+  # ONLY WORKS IF allGuilds IS SET TO true
+  #
+  # ------------------------------------------------
+  guilds:
+  - "guild id"
+  allGuilds: false

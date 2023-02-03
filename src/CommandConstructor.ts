@@ -546,7 +546,6 @@ class CommandConstructor {
     subcommandGroupName: string | null,
     subcommandName: string,
     description: string,
-    isSubcommandGroup: boolean,
     options?: Omit<CommandOptions, "dmPermission">,
     args?: CommandArgument[]
   ) {
@@ -558,7 +557,7 @@ class CommandConstructor {
 
     let builder: SlashCommandBuilder | SlashCommandSubcommandGroupBuilder =
       this.builders.find((x) => x.name === commandName) as SlashCommandBuilder;
-    if (isSubcommandGroup) {
+    if (subcommandGroupName !== null) {
       const innerBuilder = (builder as SlashCommandBuilder)?.options.find(
         (x) =>
           x.toJSON().type === ApplicationCommandOptionType.SubcommandGroup &&

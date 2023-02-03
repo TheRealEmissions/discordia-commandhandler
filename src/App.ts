@@ -1,7 +1,7 @@
 import Logger from "ts-logger";
 import BaseApp from "./BaseApp.js";
 import CommandConstructor from "./CommandConstructor.js";
-import { Config } from "../config/Settings.js";
+import { Config } from "../config/internal/Settings.js";
 import { Routes } from "discord-api-types/v10";
 class App extends BaseApp {
   CommandConstructor: CommandConstructor;

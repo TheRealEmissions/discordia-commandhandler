@@ -12,7 +12,7 @@ class PingCommand {
     // no code needed as subcommands are created
   }
 
-  @CommandConstructor.subcommand("ping", null, "bot", "Ping the bot.", false, {
+  @CommandConstructor.subcommand("ping", null, "bot", "Ping the bot.", {
     nameInLocale: "botinfrench",
     nameLocalization: "fr",
   })
@@ -25,7 +25,6 @@ class PingCommand {
     null,
     "user",
     "Ping a user.",
-    false,
     {
       nameInLocale: "userinfrench",
       nameLocalization: "fr",

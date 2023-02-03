@@ -23,13 +23,13 @@ __decorate([
     })
 ], PingCommand.prototype, "ping", null);
 __decorate([
-    CommandConstructor.subcommand("ping", null, "bot", "Ping the bot.", false, {
+    CommandConstructor.subcommand("ping", null, "bot", "Ping the bot.", {
         nameInLocale: "botinfrench",
         nameLocalization: "fr",
     })
 ], PingCommand.prototype, "bot", null);
 __decorate([
-    CommandConstructor.subcommand("ping", null, "user", "Ping a user.", false, {
+    CommandConstructor.subcommand("ping", null, "user", "Ping a user.", {
         nameInLocale: "userinfrench",
         nameLocalization: "fr",
     }, [

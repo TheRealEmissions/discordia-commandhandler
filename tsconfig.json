@@ -17,8 +17,8 @@
     "esModuleInterop": false,
     "incremental": true,
     "experimentalDecorators": true,
-    "removeComments": true
+    "removeComments": true,
   },
   "include": ["./**/*"],
-  "exclude": ["./node_modules/**/*", "./out/**/*", "*/node_modules/**/*", "*/package-lock.json", "*/example"]
+  "exclude": ["./node_modules/**/*", "./out/**/*", "*/node_modules/**/*", "*/package-lock.json"]
 }

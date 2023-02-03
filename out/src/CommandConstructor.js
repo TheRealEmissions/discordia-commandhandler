@@ -316,12 +316,12 @@ class CommandConstructor {
         });
         return (target, propertyKey, descriptor) => { };
     }
-    static subcommand(commandName, subcommandGroupName, subcommandName, description, isSubcommandGroup, options, args) {
+    static subcommand(commandName, subcommandGroupName, subcommandName, description, options, args) {
         if (!this.builders.some((x) => x.name === commandName)) {
             throw new Error(`Command with name ${commandName} doesn't exist (Make sure commands appear first in your code so they compile in order!)`);
         }
         let builder = this.builders.find((x) => x.name === commandName);
-        if (isSubcommandGroup) {
+        if (subcommandGroupName !== null) {
             const innerBuilder = builder?.options.find((x) => x.toJSON().type === ApplicationCommandOptionType.SubcommandGroup &&
                 x.toJSON().name === subcommandGroupName);
             if (!innerBuilder) {
