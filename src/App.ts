@@ -5,9 +5,11 @@ import { Config } from "../config/internal/Settings.js";
 import { Routes } from "discord-api-types/v10";
 class App extends BaseApp {
   CommandConstructor: CommandConstructor;
+  Builders: typeof CommandConstructor;
   constructor() {
     super();
     this.CommandConstructor = new CommandConstructor(this);
+    this.Builders = CommandConstructor;
   }
 
   async init() {
