@@ -4,40 +4,50 @@ import CommandConstructor, { CommandArguments } from "../CommandConstructor.js";
 class PingCommand {
   constructor() {}
 
-  @CommandConstructor.command("ping", "Ping the bot.", {
-    descriptionInLocale: "Ping the bot in French (idk)",
-    descriptionLocalization: "fr",
+  @CommandConstructor.command({
+    name: "ping",
+    description: "Ping the bot.",
+    options: {
+      descriptionInLocale: "Ping the bot in French (idk)",
+      descriptionLocalization: "fr",
+    },
   })
   public ping() {
     // no code needed as subcommands are created
+    // this must be first in the class
+    // to ensure commands compile in order!
   }
 
-  @CommandConstructor.subcommand("ping", null, "bot", "Ping the bot.", {
-    nameInLocale: "botinfrench",
-    nameLocalization: "fr",
+  @CommandConstructor.subcommand({
+    commandName: "ping",
+    subcommandName: "bot",
+    description: "Ping the bot.",
+    options: {
+      nameInLocale: "botinfrench",
+      nameLocalization: "fr",
+    },
   })
   public bot(interaction: APIApplicationCommandInteraction) {
     console.log(interaction.guild_id);
   }
 
-  @CommandConstructor.subcommand(
-    "ping",
-    null,
-    "user",
-    "Ping a user.",
-    {
+  @CommandConstructor.subcommand({
+    commandName: "ping",
+    subcommandName: "user",
+    description: "Ping a user.",
+    options: {
       nameInLocale: "userinfrench",
       nameLocalization: "fr",
     },
-    [
+    args: [
       {
         name: "user",
         description: "The user to ping.",
         type: CommandArguments.USER,
         required: true,
       },
-    ]
-  )
+    ],
+  })
   public user(interaction: APIApplicationCommandInteraction) {
     console.log(interaction.guild_id);
   }

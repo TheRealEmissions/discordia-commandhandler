@@ -157,6 +157,29 @@ type CommandArgument =
       maxValue?: never;
     };
 
+export type Command = {
+  name: string;
+  description: string;
+  options?: CommandOptions;
+  args?: CommandArgument[];
+};
+
+export type SubcommandGroup = {
+  commandName: string;
+  name: string;
+  description: string;
+  options?: Omit<CommandOptions, "dmPermission">;
+};
+
+export type Subcommand = {
+  commandName: string;
+  subcommandGroupName?: string;
+  subcommandName: string;
+  description: string;
+  options?: Omit<CommandOptions, "dmPermission">;
+  args?: CommandArgument[];
+};
+
 class CommandConstructor {
   App: App;
   constructor(App: App) {
@@ -168,12 +191,7 @@ class CommandConstructor {
     return CommandConstructor.builders;
   }
 
-  public static command(
-    name: string,
-    description: string,
-    options?: CommandOptions,
-    args?: CommandArgument[]
-  ) {
+  public static command({ name, description, options, args }: Command) {
     if (this.builders.some((x) => x.name === name)) {
       throw new Error(`Command with name ${name} already exists`);
     }
@@ -488,12 +506,12 @@ class CommandConstructor {
     };
   }
 
-  public static subcommandGroup(
-    commandName: string,
-    name: string,
-    description: string,
-    options?: Omit<CommandOptions, "dmPermission">
-  ) {
+  public static subcommandGroup({
+    commandName,
+    name,
+    description,
+    options,
+  }: SubcommandGroup) {
     if (!this.builders.some((x) => x.name === commandName)) {
       throw new Error(
         `Command with name ${commandName} doesn't exist (Make sure commands appear first in your code so they compile in order!)`
@@ -541,14 +559,14 @@ class CommandConstructor {
     ) => {};
   }
 
-  public static subcommand(
-    commandName: string,
-    subcommandGroupName: string | null,
-    subcommandName: string,
-    description: string,
-    options?: Omit<CommandOptions, "dmPermission">,
-    args?: CommandArgument[]
-  ) {
+  public static subcommand({
+    commandName,
+    subcommandGroupName,
+    subcommandName,
+    description,
+    options,
+    args,
+  }: Subcommand) {
     if (!this.builders.some((x) => x.name === commandName)) {
       throw new Error(
         `Command with name ${commandName} doesn't exist (Make sure commands appear first in your code so they compile in order!)`
