@@ -13,9 +13,9 @@ commands:
   # GUILD COMMANDS
   #
   # LIST ALL GUILD IDS YOU WANT THE COMMANDS TO BE PUSHED TO
-  # ONLY WORKS IF allGuilds IS SET TO true
+  # OR PUSH TO ALL GUILDS WITH allGuilds = true
   #
   # ------------------------------------------------
   guilds:
-  - "guild id"
+  - "757263832761630790"
   allGuilds: false

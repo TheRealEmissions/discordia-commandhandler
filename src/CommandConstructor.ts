@@ -201,7 +201,12 @@ class CommandConstructor {
     args,
     disabled,
   }: Command) {
-    if (disabled) return;
+    if (disabled)
+      return (
+        target: any,
+        propertyKey: string,
+        descriptor: PropertyDescriptor
+      ) => {};
     if (this.builders.some((x) => x.name === name)) {
       throw new Error(`Command with name ${name} already exists`);
     }
@@ -523,7 +528,12 @@ class CommandConstructor {
     options,
     disabled,
   }: SubcommandGroup) {
-    if (disabled) return;
+    if (disabled)
+      return (
+        target: any,
+        propertyKey: string,
+        descriptor: PropertyDescriptor
+      ) => {};
     if (!this.builders.some((x) => x.name === commandName)) {
       throw new Error(
         `Command with name ${commandName} doesn't exist (Make sure commands appear first in your code so they compile in order!)`
@@ -580,7 +590,12 @@ class CommandConstructor {
     args,
     disabled,
   }: Subcommand) {
-    if (disabled) return;
+    if (disabled)
+      return (
+        target: any,
+        propertyKey: string,
+        descriptor: PropertyDescriptor
+      ) => {};
     if (!this.builders.some((x) => x.name === commandName)) {
       throw new Error(
         `Command with name ${commandName} doesn't exist (Make sure commands appear first in your code so they compile in order!)`

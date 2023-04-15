@@ -10,4 +10,6 @@ const config = YAML.parse(
   )
 );
 
+console.log(config);
+
 export const SettingsConfig: ISettingsConfig = config;
