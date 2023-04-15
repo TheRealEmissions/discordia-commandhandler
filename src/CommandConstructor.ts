@@ -162,6 +162,7 @@ export type Command = {
   description: string;
   options?: CommandOptions;
   args?: CommandArgument[];
+  disabled?: boolean;
 };
 
 export type SubcommandGroup = {
@@ -169,6 +170,7 @@ export type SubcommandGroup = {
   name: string;
   description: string;
   options?: Omit<CommandOptions, "dmPermission">;
+  disabled?: boolean;
 };
 
 export type Subcommand = {
@@ -178,6 +180,7 @@ export type Subcommand = {
   description: string;
   options?: Omit<CommandOptions, "dmPermission">;
   args?: CommandArgument[];
+  disabled?: boolean;
 };
 
 class CommandConstructor {
@@ -191,7 +194,14 @@ class CommandConstructor {
     return CommandConstructor.builders;
   }
 
-  public static command({ name, description, options, args }: Command) {
+  public static command({
+    name,
+    description,
+    options,
+    args,
+    disabled,
+  }: Command) {
+    if (disabled) return;
     if (this.builders.some((x) => x.name === name)) {
       throw new Error(`Command with name ${name} already exists`);
     }
@@ -511,7 +521,9 @@ class CommandConstructor {
     name,
     description,
     options,
+    disabled,
   }: SubcommandGroup) {
+    if (disabled) return;
     if (!this.builders.some((x) => x.name === commandName)) {
       throw new Error(
         `Command with name ${commandName} doesn't exist (Make sure commands appear first in your code so they compile in order!)`
@@ -566,7 +578,9 @@ class CommandConstructor {
     description,
     options,
     args,
+    disabled,
   }: Subcommand) {
+    if (disabled) return;
     if (!this.builders.some((x) => x.name === commandName)) {
       throw new Error(
         `Command with name ${commandName} doesn't exist (Make sure commands appear first in your code so they compile in order!)`
