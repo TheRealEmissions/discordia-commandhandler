@@ -17,8 +17,14 @@
     "esModuleInterop": false,
     "incremental": true,
     "experimentalDecorators": true,
-    "removeComments": true,
+    "removeComments": true
   },
   "include": ["./**/*"],
-  "exclude": ["./node_modules/**/*", "./out/**/*", "*/node_modules/**/*", "*/package-lock.json"]
+  "exclude": [
+    "./node_modules/**/*",
+    "./out/**/*",
+    "*/node_modules/**/*",
+    "*/package-lock.json",
+    "./types/command-handler/**/*"
+  ]
 }
