@@ -87,6 +87,18 @@ class App extends BaseApp {
       }
     }
   }
+
+  command() {
+    return CommandConstructor.command;
+  }
+
+  subcommand() {
+    return CommandConstructor.subcommand;
+  }
+
+  subcommandGroup() {
+    return CommandConstructor.subcommandGroup;
+  }
 }
 
 export default App;
