@@ -5,15 +5,17 @@ import CommandConstructor, {
   Subcommand,
   SubcommandGroup,
 } from "./CommandConstructor.js";
-import { Config } from "../config/internal/Settings.js";
+import { SettingsConfig } from "../config/internal/SettingsConfig.js";
 import { Routes } from "discord-api-types/v10";
 class App extends BaseApp {
-  CommandConstructor: CommandConstructor;
-  Builders: typeof CommandConstructor;
+  private CommandConstructor: CommandConstructor;
   constructor() {
     super();
     this.CommandConstructor = new CommandConstructor(this);
-    this.Builders = CommandConstructor;
+  }
+
+  getCommandConstructor() {
+    return this.CommandConstructor;
   }
 
   async init() {
@@ -28,7 +30,7 @@ class App extends BaseApp {
     const data = commands.map((x) => x.toJSON());
     const rest = BaseApp.Client.getRest();
 
-    if (Config.commands.global) {
+    if (SettingsConfig.commands.global) {
       try {
         await rest.put(
           Routes.applicationCommands(
@@ -46,7 +48,7 @@ class App extends BaseApp {
       }
       Logger.log("Pushed global commands to Discord!", "COMMANDS");
     }
-    if (Config.commands.allGuilds) {
+    if (SettingsConfig.commands.allGuilds) {
       const guilds = await BaseApp.Client.getClient().guilds.fetch();
       for (const guild of guilds) {
         try {
@@ -68,8 +70,8 @@ class App extends BaseApp {
         }
         Logger.log(`Pushed commands to guild ${guild[1].id}!`, "COMMANDS");
       }
-    } else if (Config.commands.guilds.length > 0) {
-      for (const guild of Config.commands.guilds) {
+    } else if (SettingsConfig.commands.guilds.length > 0) {
+      for (const guild of SettingsConfig.commands.guilds) {
         try {
           await rest.put(
             Routes.applicationGuildCommands(

@@ -1,4 +1,4 @@
-export interface SettingsConfig {
+export interface ISettingsConfig {
   commands: {
     global: boolean;
     guilds: string[];

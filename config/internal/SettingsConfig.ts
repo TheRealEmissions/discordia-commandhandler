@@ -1,4 +1,4 @@
-import { SettingsConfig } from "./interfaces/Settings";
+import { ISettingsConfig } from "./interfaces/ISettingsConfig.js";
 import FS from "fs-extra-promise";
 import YAML from "yaml";
 import { fileURLToPath } from "node:url";
@@ -10,4 +10,4 @@ const config = YAML.parse(
   )
 );
 
-export const Config: SettingsConfig = config;
+export const SettingsConfig: ISettingsConfig = config;
