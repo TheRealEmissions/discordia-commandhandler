@@ -1,6 +1,10 @@
 import Logger from "ts-logger";
 import BaseApp from "./BaseApp.js";
-import CommandConstructor from "./CommandConstructor.js";
+import CommandConstructor, {
+  Command,
+  Subcommand,
+  SubcommandGroup,
+} from "./CommandConstructor.js";
 import { Config } from "../config/internal/Settings.js";
 import { Routes } from "discord-api-types/v10";
 class App extends BaseApp {
@@ -88,16 +92,16 @@ class App extends BaseApp {
     }
   }
 
-  command() {
-    return CommandConstructor.command;
+  command(obj: Command) {
+    return CommandConstructor.command.call(CommandConstructor, obj);
   }
 
-  subcommand() {
-    return CommandConstructor.subcommand;
+  subcommand(obj: Subcommand) {
+    return CommandConstructor.subcommand.call(CommandConstructor, obj);
   }
 
-  subcommandGroup() {
-    return CommandConstructor.subcommandGroup;
+  subcommandGroup(obj: SubcommandGroup) {
+    return CommandConstructor.subcommandGroup.call(CommandConstructor, obj);
   }
 }
 
