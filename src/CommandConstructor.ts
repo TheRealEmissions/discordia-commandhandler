@@ -12,6 +12,7 @@ import {
   ChannelType,
 } from "discord-api-types/v10";
 import BaseApp from "./BaseApp.js";
+import { CommandInteraction } from "discord.js";
 
 export declare enum Locale {
   Indonesian = "id",
@@ -501,6 +502,7 @@ class CommandConstructor {
         }
       }
     }
+
     this.builders.push(builder);
 
     return (
@@ -510,12 +512,17 @@ class CommandConstructor {
     ) => {
       BaseApp.Events.getEventEmitter().on(
         CommandHandlerEvents.APPLICATION_COMMAND_USE,
-        (interaction: APIApplicationCommandInteraction, ...args: any[]) => {
+        (interaction: CommandInteraction, ...args: any[]) => {
+          BaseApp.Events.getEventEmitter().emit(
+            BaseApp.Events.GeneralEvents.DEBUG,
+            "Received Command Interaction"
+          );
           if (
-            interaction.data.name === name &&
+            interaction.commandName === name &&
             this.builders.find((x) => x.name === name)?.options.length === 0
-          )
-            descriptor.value(interaction, ...args);
+          ) {
+            descriptor.value.apply(target, [interaction, ...args]);
+          }
         }
       );
     };
