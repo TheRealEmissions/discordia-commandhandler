@@ -3,12 +3,14 @@ import {
   ComponentType,
   InteractionType,
 } from "discord-api-types/v10";
-import BaseApp from "../../BaseApp";
-import { DiscordEvents, EventTypes } from "ts-modular-bot-addon-events-types";
-import { CommandHandlerEvents } from "../CommonEvents";
+import BaseApp from "../../BaseApp.js";
+import { CommandHandlerEvents } from "../CommonEvents.js";
 
 class InteractionCreateEvent {
-  @BaseApp.Events.bind(DiscordEvents.INTERACTION_CREATE, EventTypes.ON)
+  @BaseApp.Events.bind(
+    BaseApp.Events.DiscordEvents.INTERACTION_CREATE,
+    BaseApp.Events.EventTypes.ON
+  )
   static async commandUse(int: APIInteraction) {
     if (int.type === InteractionType.ApplicationCommand) {
       BaseApp.Events.getEventEmitter().emit(
@@ -18,7 +20,10 @@ class InteractionCreateEvent {
     }
   }
 
-  @BaseApp.Events.bind(DiscordEvents.INTERACTION_CREATE, EventTypes.ON)
+  @BaseApp.Events.bind(
+    BaseApp.Events.DiscordEvents.INTERACTION_CREATE,
+    BaseApp.Events.EventTypes.ON
+  )
   static async buttonClick(int: APIInteraction) {
     if (
       int.type === InteractionType.MessageComponent &&
@@ -31,7 +36,10 @@ class InteractionCreateEvent {
     }
   }
 
-  @BaseApp.Events.bind(DiscordEvents.INTERACTION_CREATE, EventTypes.ON)
+  @BaseApp.Events.bind(
+    BaseApp.Events.DiscordEvents.INTERACTION_CREATE,
+    BaseApp.Events.EventTypes.ON
+  )
   static async selectMenuClick(int: APIInteraction) {
     if (
       int.type === InteractionType.MessageComponent &&
@@ -44,7 +52,10 @@ class InteractionCreateEvent {
     }
   }
 
-  @BaseApp.Events.bind(DiscordEvents.INTERACTION_CREATE, EventTypes.ON)
+  @BaseApp.Events.bind(
+    BaseApp.Events.DiscordEvents.INTERACTION_CREATE,
+    BaseApp.Events.EventTypes.ON
+  )
   static async modalSubmit(int: APIInteraction) {
     if (int.type === InteractionType.ModalSubmit) {
       BaseApp.Events.getEventEmitter().emit(
