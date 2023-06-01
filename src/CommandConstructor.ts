@@ -1,14 +1,12 @@
 import {
   SlashCommandBuilder,
   SlashCommandSubcommandGroupBuilder,
-  ToAPIApplicationCommandOptions,
 } from "@discordjs/builders";
 import App from "./App.js";
 import { CommandHandlerEvents } from "./events/CommonEvents.js";
 import {
   APIApplicationCommandInteraction,
   ApplicationCommandOptionType,
-  ApplicationCommandType,
   ChannelType,
 } from "discord-api-types/v10";
 import BaseApp from "./BaseApp.js";

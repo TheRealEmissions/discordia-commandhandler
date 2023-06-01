@@ -7,9 +7,6 @@ import CommandConstructor, {
 } from "./CommandConstructor.js";
 import { SettingsConfig } from "../config/internal/SettingsConfig.js";
 import { Routes } from "discord-api-types/v10";
-import { CommandHandlerEvents } from "./events/CommonEvents.js";
-import { EventTypes } from "ts-modular-bot-addon-events-types";
-import { CommandInteraction } from "discord.js";
 class App extends BaseApp {
   private CommandConstructor: CommandConstructor;
   constructor() {
