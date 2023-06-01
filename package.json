@@ -6,19 +6,20 @@
   "types": "types/command-handler/index.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "compile": "npx tsc && copyfiles -u 1 config/*.yml out/config"
+    "compile": "npx tsc && copyfiles -u 1 config/*.yml out/config",
+    "compiletypes": "npx tsc --emitDeclarationOnly && copyfiles -u 1 config/*.yml out/config"
   },
   "author": "Emissions#2565",
   "license": "ISC",
   "dependencies": {
     "@discordjs/builders": "^1.4.0",
     "ada-discordclient-types": "github:therealemissions/discordia-discordclient-types#ada",
+    "ada-events-types": "github:therealemissions/discordia-events-types#ada",
     "ada-types": "github:therealemissions/ada-types",
     "discord-api-types": "^0.37.25",
     "discord.js": "^14.7.1",
     "fs-extra-promise": "^1.0.1",
     "ts-logger": "github:therealemissions/ts-logger",
-    "ts-modular-bot-addon-events-types": "github:therealemissions/ts-modular-bot-addon-events-types",
     "ts-modular-bot-file-design": "github:therealemissions/ts-modular-bot-file-design",
     "yaml": "^2.2.1"
   },
