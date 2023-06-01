@@ -1,4 +1,4 @@
-[submodule "Command Handler Types"]
+[submodule "types"]
 	path = types
 	url = https://github.com/therealemissions/discordia-generalcommands-types.git
 	branch = ada
